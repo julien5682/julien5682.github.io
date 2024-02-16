@@ -17,7 +17,7 @@
             var code4 = document.getElementById("code4").value;
 
             if (code1 === "1234" && code2 === "5678" && code3 === "abcd" && code4 === "efgh") {
-                window.open('section_secrete.html', '_ouverture');
+                window.open('section_secrete.html', '_blank');
             } else {
                 alert("Codes incorrects. Veuillez réessayer.");
             }
@@ -39,5 +39,17 @@
     <input type="text" id="code4">
     <br>
     <button onclick="verifierCode()">Valider</button>
+
+    <div id="sectionSecrete" class="hidden">
+        <h2>Section secrète</h2>
+        <form>
+            <label for="info">Entrez vos informations :</label><br>
+            <input type="text" id="info" name="info"><br>
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
+
+
+
 </body>
 </html>
