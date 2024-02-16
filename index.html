@@ -5,12 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accès sécurisé</title>
     <style>
-         /* body {
-            background-image: url('loutre.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        } */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 10px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
         .hidden {
             display: none;
         }
@@ -22,39 +69,46 @@
             var code3 = document.getElementById("code3").value;
             var code4 = document.getElementById("code4").value;
 
-            var _0x66ee8d=_0x30e0;(function(_0x3ec7b4,_0x25ac53){var _0x300b0b=_0x30e0,_0x2f3778=_0x3ec7b4();while(!![]){try{var _0x4a85c4=-parseInt(_0x300b0b(0x1ab))/(0xc15*-0x3+-0x31b+0x275b)+parseInt(_0x300b0b(0x1af))/(-0x1*0x1511+-0x3b*0x3c+0x6fb*0x5)*(-parseInt(_0x300b0b(0x1a8))/(-0xee4*-0x1+-0x73e+-0x7a3*0x1))+parseInt(_0x300b0b(0x1b6))/(0x132b+-0x67a+-0x3b*0x37)*(-parseInt(_0x300b0b(0x1ba))/(-0x1*0xd8d+0xf1e+-0x18c))+parseInt(_0x300b0b(0x1b3))/(-0x17c2+0x5*0x282+0xb3e)+-parseInt(_0x300b0b(0x1bc))/(-0x1fc*0x11+-0xdb9*-0x1+-0x12*-0x11d)*(-parseInt(_0x300b0b(0x1c1))/(0x10d*0xd+0x23*-0x22+-0x8fb))+-parseInt(_0x300b0b(0x1bd))/(0x10d2+0x50*0x47+-0x38b*0xb)*(parseInt(_0x300b0b(0x1b7))/(-0x67a*0x2+-0x1*0x97f+0x167d))+-parseInt(_0x300b0b(0x1b8))/(-0x1*0x225b+-0x96+0x4*0x8bf)*(-parseInt(_0x300b0b(0x1c0))/(0x1961+0x257a+-0x1*0x3ecf));if(_0x4a85c4===_0x25ac53)break;else _0x2f3778['push'](_0x2f3778['shift']());}catch(_0x31f764){_0x2f3778['push'](_0x2f3778['shift']());}}}(_0x3c34,-0xa7691+0x30f92*0x1+0xe6873));function _0x3c34(){var _0x815220=['ById','rrects.\x20Ve','227298medgJE','1234','add','92SseJXn','12250WhqhUu','913bvgnoW','section_se','159115mRZYmx','hidden','122129hvzJzq','18GUqFmf','_blank','classList','238692wUQkCS','64FmqXxq','ssayer.','uillez\x20rée','41349AFsGKB','crete.html','Codes\x20inco','483296elolGa','5678','open','getElement','22hhVAtU','codes'];_0x3c34=function(){return _0x815220;};return _0x3c34();}function _0x30e0(_0x382a56,_0x2a984b){var _0x397c00=_0x3c34();return _0x30e0=function(_0x1bc6bf,_0x260f52){_0x1bc6bf=_0x1bc6bf-(0x1*0x11d9+0xb3e*-0x3+-0x8c4*-0x2);var _0x16980b=_0x397c00[_0x1bc6bf];return _0x16980b;},_0x30e0(_0x382a56,_0x2a984b);}code1===_0x66ee8d(0x1b4)&&code2===_0x66ee8d(0x1ac)&&code3===_0x66ee8d(0x1b4)&&code4===_0x66ee8d(0x1ac)?(window[_0x66ee8d(0x1ad)](_0x66ee8d(0x1b9)+_0x66ee8d(0x1a9),_0x66ee8d(0x1be)),document[_0x66ee8d(0x1ae)+_0x66ee8d(0x1b1)](_0x66ee8d(0x1b0))[_0x66ee8d(0x1bf)][_0x66ee8d(0x1b5)](_0x66ee8d(0x1bb))):alert(_0x66ee8d(0x1aa)+_0x66ee8d(0x1b2)+_0x66ee8d(0x1a7)+_0x66ee8d(0x1c2));
-        } 
-     </script>
-       
+            if (code1 === "1234" && code2 === "5678" && code3 === "1234" && code4 === "5678") {
+                window.open('section_secrete.html', '_blank');
+                document.getElementById("codes").classList.add("hidden");
+            } else {
+                alert("Codes incorrects. Veuillez réessayer.");
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>Accès sécurisé</h1>
-    <div id="codes">
-        <label for="code1">Code 1:</label>
-        <input type="text" id="code1">
-        <br>
-        <label for="code2">Code 2:</label>
-        <input type="text" id="code2">
-        <br>
-        <label for="code3">Code 3:</label>
-        <input type="text" id="code3">
-        <br>
-        <label for="code4">Code 4:</label>
-        <input type="text" id="code4">
-        <br>
-    </div>    
-    <button onclick="verifierCode()">Valider</button>
+    <div class="container">
+        <h1>Accès sécurisé</h1>
+        <div id="codes">
+            <div class="form-group">
+                <label for="code1">Code 1:</label>
+                <input type="text" id="code1">
+            </div>
+            <div class="form-group">
+                <label for="code2">Code 2:</label>
+                <input type="text" id="code2">
+            </div>
+            <div class="form-group">
+                <label for="code3">Code 3:</label>
+                <input type="text" id="code3">
+            </div>
+            <div class="form-group">
+                <label for="code4">Code 4:</label>
+                <input type="text" id="code4">
+            </div>
+        </div>
+        <button onclick="verifierCode()">Valider</button>
 
-    <div id="sectionSecrete" class="hidden">
-        <h2>Section secrète</h2>
-        <form>
-            <label for="info">Entrez vos informations :</label><br>
-            <input type="text" id="info" name="info"><br>
-            <input type="submit" value="Envoyer">
-        </form>
+        <div id="sectionSecrete" class="hidden">
+            <h2>Section secrète</h2>
+            <form>
+                <label for="info">Entrez vos informations :</label><br>
+                <input type="text" id="info" name="info"><br>
+                <input type="submit" value="Envoyer">
+            </form>
+        </div>
     </div>
-
-
-
 </body>
 </html>
