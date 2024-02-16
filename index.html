@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accès sécurisé</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function verifierCode() {
+            var code1 = document.getElementById("code1").value;
+            var code2 = document.getElementById("code2").value;
+            var code3 = document.getElementById("code3").value;
+            var code4 = document.getElementById("code4").value;
+
+            if (code1 === "1234" && code2 === "5678" && code3 === "abcd" && code4 === "efgh") {
+                document.getElementById("sectionSecrete").classList.remove("hidden");
+            } else {
+                alert("Codes incorrects. Veuillez réessayer.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Accès sécurisé</h1>
+    <label for="code1">Code 1:</label>
+    <input type="text" id="code1">
+    <br>
+    <label for="code2">Code 2:</label>
+    <input type="text" id="code2">
+    <br>
+    <label for="code3">Code 3:</label>
+    <input type="text" id="code3">
+    <br>
+    <label for="code4">Code 4:</label>
+    <input type="text" id="code4">
+    <br>
+    <button onclick="verifierCode()">Valider</button>
+
+    <div id="sectionSecrete" class="hidden">
+        <h2>Section secrète</h2>
+        <p>Ceci est la partie secrète de la page.</p>
+    </div>
+</body>
+</html>
