@@ -31,6 +31,11 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            display: none;
+        }
+        #intro-text {
+            text-align: center;
+            margin-bottom: 20px;
         }
         #questions {
             display: none;
@@ -88,6 +93,7 @@
     </style>
     <script>
         function startQuiz() {
+            document.getElementById('intro-text').style.display = 'none';
             document.getElementById('start-btn').style.display = 'none';
             document.getElementById('questions').style.display = 'block';
             showQuestion(0);
@@ -110,12 +116,20 @@
         function submitForm() {
             var answers = [];
             var questions = document.querySelectorAll('.question');
+            var allQuestionsAnswered = true;
             questions.forEach(function(question, index) {
                 var selectedOptions = Array.from(question.querySelectorAll('input[type="checkbox"]:checked')).map(function(option) {
                     return option.value;
                 });
+                if (selectedOptions.length === 0) {
+                    allQuestionsAnswered = false;
+                }
                 answers.push(selectedOptions);
             });
+            if (!allQuestionsAnswered) {
+                alert('Veuillez répondre à toutes les questions avant de soumettre.');
+                return;
+            }
             var resultTable = document.getElementById('result');
             var tbody = resultTable.querySelector('tbody');
             tbody.innerHTML = '';
@@ -176,52 +190,36 @@
 </head>
 <body>
     <div id="container">
-        <h1>Questionnaire</h1>
-        <button type="button" id="start-btn" onclick="startQuiz()">Commencer</button>
+        <p id="intro-text">Bienvenue dans le questionnaire. Cliquez sur "Commencer" pour démarrer.</p>
+        <button id="start-btn" onclick="startQuiz()">Commencer</button>
         <div id="questions">
-            <div class="question">
-                <img src="image1.jpg" alt="Image question 1">
-                <label for="q1">Quelle est la capitale de la France?</label>
-                <input type="checkbox" id="q1" name="question1" value="Paris">
-                <label for="q1">Paris</label>
-                <button type="button" onclick="showQuestion(1)">Suivant</button>
-            </div>
-            <div class="question">
-                <img src="image2.jpg" alt="Image question 2">
-                <label for="q2">Quelle est la couleur du ciel par temps clair?</label>
-                <input type="checkbox" id="q2" name="question2" value="Rouge">
-                <label for="q2">Rouge</label>
-                <input type="checkbox" id="q3" name="question2" value="Bleu">
-                <label for="q3">Bleu</label>
-                <input type="checkbox" id="q4" name="question2" value="Vert">
-                <label for="q4">Vert</label>
-                <button type="button" onclick="showQuestion(2)">Suivant</button>
+            <div class="question active">
+                <p>Question 1: Quelle est la capitale de la France ?</p>
+                <input type="checkbox" id="paris" name="q1" value="Paris">
+                <label for="paris">Paris</label>
             </div>
             <!-- Ajoutez les autres questions ici -->
-            <!-- <div class="question">
-                <img src="image3.jpg" alt="Image question 3">
-                <label for="q7">Question 3: Texte de la question 3</label>
-                <input type="checkbox" id="q7" name="question3" value="Bonne réponse 1">
-                <label for="q7">Bonne réponse 1</label>
-                <input type="checkbox" id="q8" name="question3" value="Bonne réponse 2">
-                <label for="q8">Bonne réponse 2</label>
-                <button type="button" onclick="showQuestion(3)">Suivant</button>
-            </div> -->
+            <div class="question">
+                <p>Question 2: Quelle est la couleur du ciel par beau temps ?</p>
+                <input type="checkbox" id="bleu" name="q2" value="Bleu">
+                <label for="bleu">Bleu</label>
+                <input type="checkbox" id="ciel-bleu" name="q2" value="Ciel bleu">
+                <label for="ciel-bleu">Ciel bleu</label>
+            </div>
+            <!-- Ajoutez les autres questions ici -->
         </div>
-        <button type="button" id="submit-btn" onclick="submitForm()">Soumettre</button>
+        <button id="submit-btn" onclick="submitForm()">Soumettre</button>
         <div id="result">
-            <h2>Récapitulatif</h2>
+            <h2>Résultats</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Question</th>
-                        <th>Réponse donnée</th>
+                        <th>Réponse(s) donnée(s)</th>
                         <th>Statut</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Les réponses seront insérées ici via JavaScript -->
-                </tbody>
+                <tbody></tbody>
             </table>
         </div>
     </div>
