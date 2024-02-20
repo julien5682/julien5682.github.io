@@ -23,6 +23,10 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        #intro-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
         #start-btn, #submit-btn, #next-btn, #prev-btn {
             margin: 0 auto;
             padding: 10px 20px;
@@ -31,10 +35,6 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-        }
-        #intro-text {
-            text-align: center;
-            margin-bottom: 20px;
         }
         #questions {
             display: none;
@@ -112,7 +112,7 @@
                 document.getElementById('prev-btn').style.display = 'inline-block';
             }
             if (num === questions.length - 1) {
-                document.getElementById('submit-btn').style.display = 'block';
+                document.getElementById('submit-btn').style.display = 'inline-block';
                 document.getElementById('next-btn').style.display = 'none';
             } else {
                 document.getElementById('submit-btn').style.display = 'none';
@@ -220,7 +220,8 @@
             </div>
             <!-- Ajoutez d'autres questions ici -->
         </div>
-        <button id="submit-btn" onclick="submitForm()">Soumettre</button>
+        <button id="submit-btn" style="display: none;" onclick="submitForm()">Soumettre</button>
+        <button id="prev-btn" style="display: none;" onclick="prevQuestion()">Précédent</button>
         <div id="result">
             <h2>Résultat du questionnaire</h2>
             <table>
