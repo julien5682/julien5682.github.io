@@ -12,16 +12,29 @@
             background-color: #f0f0f0;
         }
         #container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h1 {
+        h1, h2, p {
             text-align: center;
             margin-bottom: 20px;
+        }
+        #start-btn, #submit-btn {
+            display: none;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #questions {
+            display: none;
         }
         .question {
             display: none;
@@ -35,18 +48,8 @@
             font-weight: bold;
             margin-bottom: 10px;
         }
-        .question input[type="radio"] {
+        .question input[type="checkbox"] {
             margin-right: 10px;
-        }
-        #submit-btn {
-            display: none;
-            margin: 0 auto;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
         #result {
             display: none;
@@ -76,8 +79,21 @@
         .incorrect {
             background-color: #f5c6cb;
         }
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
     </style>
     <script>
+        function startQuiz() {
+            document.getElementById('start-btn').style.display = 'none';
+            document.getElementById('questions').style.display = 'block';
+            showQuestion(0);
+        }
+
         function showQuestion(num) {
             var questions = document.querySelectorAll('.question');
             questions.forEach(function(question, index) {
@@ -95,92 +111,125 @@
         function submitForm() {
             var answers = [];
             var questions = document.querySelectorAll('.question');
-            questions.forEach(function(question) {
-                var selectedOption = question.querySelector('input[type="radio"]:checked');
-                if (selectedOption) {
-                    answers.push(selectedOption.value);
-                } else {
-                    answers.push('');
-                }
+            questions.forEach(function(question, index) {
+                var selectedOptions = Array.from(question.querySelectorAll('input[type="checkbox"]:checked')).map(function(option) {
+                    return option.value;
+                });
+                answers.push(selectedOptions);
             });
             var resultTable = document.getElementById('result');
             var tbody = resultTable.querySelector('tbody');
             tbody.innerHTML = '';
+            var totalQuestions = questions.length;
+            var correctAnswers = 0;
             answers.forEach(function(answer, index) {
                 var row = tbody.insertRow(index);
                 var numCell = row.insertCell(0);
                 var answerCell = row.insertCell(1);
                 var statusCell = row.insertCell(2);
                 numCell.textContent = 'Question ' + (index + 1);
-                answerCell.textContent = answer;
-                var correctAnswer = getCorrectAnswer(index);
-                if (answer === correctAnswer) {
+                answerCell.textContent = answer.join(', ');
+                var correctAnswersForQuestion = getCorrectAnswers(index);
+                if (arraysEqual(answer, correctAnswersForQuestion)) {
                     statusCell.textContent = 'Correct';
                     statusCell.classList.add('correct');
+                    correctAnswers++;
                 } else {
                     statusCell.textContent = 'Incorrect';
                     statusCell.classList.add('incorrect');
                 }
             });
-            document.getElementById('quiz-form').style.display = 'none';
+            var score = (correctAnswers / totalQuestions) * 100;
+            var scoreRow = tbody.insertRow();
+            var scoreCell1 = scoreRow.insertCell(0);
+            var scoreCell2 = scoreRow.insertCell(1);
+            var scoreCell3 = scoreRow.insertCell(2);
+            scoreCell1.textContent = 'Score';
+            scoreCell2.textContent = correctAnswers + '/' + totalQuestions;
+            scoreCell3.textContent = score.toFixed(2) + '%';
+            document.getElementById('questions').style.display = 'none';
             document.getElementById('result').style.display = 'block';
         }
 
-        function getCorrectAnswer(questionNum) {
+        function getCorrectAnswers(questionNum) {
             switch (questionNum) {
                 case 0:
-                    return 'Paris';
+                    return ['Paris'];
                 case 1:
-                    return 'Bleu';
+                    return ['Bleu', 'Ciel bleu'];
                 // Ajoutez les autres bonnes réponses ici
                 // case 2:
-                //     return 'Bonne réponse';
+                //     return ['Bonne réponse 1', 'Bonne réponse 2'];
                 // ...
                 default:
-                    return '';
+                    return [];
             }
+        }
+
+        function arraysEqual(arr1, arr2) {
+            if (arr1.length !== arr2.length) return false;
+            for (var i = 0; i < arr1.length; i++) {
+                if (arr1[i] !== arr2[i]) return false;
+            }
+            return true;
         }
     </script>
 </head>
 <body>
     <div id="container">
         <h1>Questionnaire</h1>
-        <form id="quiz-form">
+        <p>Bienvenue dans notre questionnaire ! Répondez aux questions suivantes :</p>
+        <button id="start-btn" onclick="startQuiz()">Commencer</button>
+        <div id="questions">
             <div class="question active">
+                <img src="image1.jpg" alt="Image question 1">
                 <label for="q1">Question 1: Quelle est la capitale de la France?</label>
-                <input type="radio" id="q1" name="question1" value="Paris">
+                <input type="checkbox" id="q1" name="question1" value="Paris">
                 <label for="q1">Paris</label>
-                <input type="radio" id="q2" name="question1" value="Londres">
+                <input type="checkbox" id="q2" name="question1" value="Londres">
                 <label for="q2">Londres</label>
-                <input type="radio" id="q3" name="question1" value="Berlin">
+                <input type="checkbox" id="q3" name="question1" value="Berlin">
                 <label for="q3">Berlin</label>
                 <button type="button" onclick="showQuestion(1)">Suivant</button>
             </div>
             <div class="question">
-                <label for="q4">Question 2: Quelle est la couleur du ciel lorsqu'il fait beau?</label>
-                <input type="radio" id="q4" name="question2" value="Bleu">
-                <label for="q4">Bleu</label>
-                <input type="radio" id="q5" name="question2" value="Rouge">
-                <label for="q5">Rouge</label>
-                <input type="radio" id="q6" name="question2" value="Vert">
+                <img src="image2.jpg" alt="Image question 2">
+                <label for="q4">Question 2: Quelle est la couleur du ciel par temps clair?</label>
+                <input type="checkbox" id="q4" name="question2" value="Rouge">
+                <label for="q4">Rouge</label>
+                <input type="checkbox" id="q5" name="question2" value="Bleu">
+                <label for="q5">Bleu</label>
+                <input type="checkbox" id="q6" name="question2" value="Vert">
                 <label for="q6">Vert</label>
                 <button type="button" onclick="showQuestion(2)">Suivant</button>
             </div>
-            <!-- Ajoutez les autres questions de la même manière -->
-            <!-- ... -->
-            <button type="button" id="submit-btn" onclick="submitForm()">Soumettre</button>
-        </form>
-        <table id="result">
-            <thead>
-                <tr>
-                    <th>Question</th>
-                    <th>Réponse</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Les réponses seront insérées ici via JavaScript -->
-            </tbody>
-        </table>
+            <!-- Ajoutez les autres questions ici -->
+            <!-- <div class="question">
+                <img src="image3.jpg" alt="Image question 3">
+                <label for="q7">Question 3: Texte de la question 3</label>
+                <input type="checkbox" id="q7" name="question3" value="Bonne réponse 1">
+                <label for="q7">Bonne réponse 1</label>
+                <input type="checkbox" id="q8" name="question3" value="Bonne réponse 2">
+                <label for="q8">Bonne réponse 2</label>
+                <button type="button" onclick="showQuestion(3)">Suivant</button>
+            </div> -->
+        </div>
+        <button type="button" id="submit-btn" onclick="submitForm()">Soumettre</button>
+        <div id="result">
+            <h2>Récapitulatif</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Réponse donnée</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les réponses seront insérées ici via JavaScript -->
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
