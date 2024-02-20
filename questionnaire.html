@@ -24,7 +24,6 @@
             margin-bottom: 20px;
         }
         #start-btn, #submit-btn {
-            display: none;
             margin: 0 auto;
             padding: 10px 20px;
             background-color: #007bff;
@@ -178,29 +177,24 @@
 <body>
     <div id="container">
         <h1>Questionnaire</h1>
-        <p>Bienvenue dans notre questionnaire ! Répondez aux questions suivantes :</p>
-        <button id="start-btn" onclick="startQuiz()">Commencer</button>
+        <button type="button" id="start-btn" onclick="startQuiz()">Commencer</button>
         <div id="questions">
-            <div class="question active">
+            <div class="question">
                 <img src="image1.jpg" alt="Image question 1">
-                <label for="q1">Question 1: Quelle est la capitale de la France?</label>
+                <label for="q1">Quelle est la capitale de la France?</label>
                 <input type="checkbox" id="q1" name="question1" value="Paris">
                 <label for="q1">Paris</label>
-                <input type="checkbox" id="q2" name="question1" value="Londres">
-                <label for="q2">Londres</label>
-                <input type="checkbox" id="q3" name="question1" value="Berlin">
-                <label for="q3">Berlin</label>
                 <button type="button" onclick="showQuestion(1)">Suivant</button>
             </div>
             <div class="question">
                 <img src="image2.jpg" alt="Image question 2">
-                <label for="q4">Question 2: Quelle est la couleur du ciel par temps clair?</label>
-                <input type="checkbox" id="q4" name="question2" value="Rouge">
-                <label for="q4">Rouge</label>
-                <input type="checkbox" id="q5" name="question2" value="Bleu">
-                <label for="q5">Bleu</label>
-                <input type="checkbox" id="q6" name="question2" value="Vert">
-                <label for="q6">Vert</label>
+                <label for="q2">Quelle est la couleur du ciel par temps clair?</label>
+                <input type="checkbox" id="q2" name="question2" value="Rouge">
+                <label for="q2">Rouge</label>
+                <input type="checkbox" id="q3" name="question2" value="Bleu">
+                <label for="q3">Bleu</label>
+                <input type="checkbox" id="q4" name="question2" value="Vert">
+                <label for="q4">Vert</label>
                 <button type="button" onclick="showQuestion(2)">Suivant</button>
             </div>
             <!-- Ajoutez les autres questions ici -->
