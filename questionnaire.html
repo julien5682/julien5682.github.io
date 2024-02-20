@@ -51,8 +51,15 @@
         #result {
             display: none;
             margin-top: 20px;
-            border-collapse: collapse;
+        }
+        #result h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        #result table {
             width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
         }
         #result th, #result td {
             border: 1px solid #ddd;
@@ -62,6 +69,12 @@
         #result th {
             background-color: #007bff;
             color: #fff;
+        }
+        .correct {
+            background-color: #c3e6cb;
+        }
+        .incorrect {
+            background-color: #f5c6cb;
         }
     </style>
     <script>
@@ -86,19 +99,46 @@
                 var selectedOption = question.querySelector('input[type="radio"]:checked');
                 if (selectedOption) {
                     answers.push(selectedOption.value);
+                } else {
+                    answers.push('');
                 }
             });
             var resultTable = document.getElementById('result');
             var tbody = resultTable.querySelector('tbody');
+            tbody.innerHTML = '';
             answers.forEach(function(answer, index) {
                 var row = tbody.insertRow(index);
                 var numCell = row.insertCell(0);
                 var answerCell = row.insertCell(1);
+                var statusCell = row.insertCell(2);
                 numCell.textContent = 'Question ' + (index + 1);
                 answerCell.textContent = answer;
+                var correctAnswer = getCorrectAnswer(index);
+                if (answer === correctAnswer) {
+                    statusCell.textContent = 'Correct';
+                    statusCell.classList.add('correct');
+                } else {
+                    statusCell.textContent = 'Incorrect';
+                    statusCell.classList.add('incorrect');
+                }
             });
             document.getElementById('quiz-form').style.display = 'none';
             document.getElementById('result').style.display = 'block';
+        }
+
+        function getCorrectAnswer(questionNum) {
+            switch (questionNum) {
+                case 0:
+                    return 'Paris';
+                case 1:
+                    return 'Bleu';
+                // Ajoutez les autres bonnes réponses ici
+                // case 2:
+                //     return 'Bonne réponse';
+                // ...
+                default:
+                    return '';
+            }
         }
     </script>
 </head>
