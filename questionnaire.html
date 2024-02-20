@@ -27,7 +27,7 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        #start-btn, #submit-btn, #next-btn, #prev-btn {
+        #start-btn, #submit-btn, .next-btn, .prev-btn {
             margin: 0 auto;
             padding: 10px 20px;
             background-color: #007bff;
@@ -191,7 +191,7 @@
                 <label for="q1-option2">Marseille</label>
                 <input type="checkbox" id="q1-option3" value="Lyon">
                 <label for="q1-option3">Lyon</label>
-                <button id="next-btn" onclick="nextQuestion()">Suivant</button>
+                <button class="next-btn" onclick="nextQuestion()">Suivant</button>
             </div>
             <div class="question">
                 <h2>Question 2</h2>
@@ -202,8 +202,8 @@
                 <label for="q2-option2">Vert</label>
                 <input type="checkbox" id="q2-option3" value="Rouge">
                 <label for="q2-option3">Rouge</label>
-                <button id="prev-btn" onclick="prevQuestion()">Précédent</button>
-                <button id="next-btn" onclick="nextQuestion()">Suivant</button>
+                <button class="prev-btn" onclick="prevQuestion()">Précédent</button>
+                <button class="next-btn" onclick="nextQuestion()">Suivant</button>
             </div>
             <div class="question">
                 <h2>Question 3</h2>
@@ -215,13 +215,13 @@
                 <label for="q3-option2">4</label>
                 <input type="checkbox" id="q3-option3" value="5">
                 <label for="q3-option3">5</label>
-                <button id="prev-btn" onclick="prevQuestion()">Précédent</button>
+                <button class="prev-btn" onclick="prevQuestion()">Précédent</button>
                 
             </div>
             <!-- Ajoutez d'autres questions ici -->
         </div>
-            <button id="submit-btn" style="display: none;" onclick="submitForm()">Soumettre</button>
-            <button id="prev-btn" style="display: none;" onclick="prevQuestion()">Précédent</button>
+        <button id="submit-btn" style="display: none;" onclick="submitForm()">Soumettre</button>
+        <button id="prev-btn" style="display: none;" onclick="prevQuestion()">Précédent</button>
         <div id="result">
             <h2>Résultat du questionnaire</h2>
             <table>
