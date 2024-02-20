@@ -90,6 +90,13 @@
     <script>
         var currentQuestion = 0;
 
+        // Réponses correctes pour chaque question
+        var correctAnswersArray = [
+            ["Paris"],
+            ["Bleu"],
+            ["4"]
+        ];
+
         function startQuiz() {
             document.getElementById('intro-text').style.display = 'none';
             document.getElementById('start-btn').style.display = 'none';
