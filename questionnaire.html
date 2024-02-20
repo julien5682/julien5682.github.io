@@ -108,7 +108,9 @@
             });
             if (num === questions.length - 1) {
                 document.getElementById('submit-btn').style.display = 'block';
+                document.getElementById('next-btn').style.display = 'none';
             } else {
+                document.getElementById('submit-btn').style.display = 'none';
                 document.getElementById('next-btn').style.display = 'block';
             }
         }
@@ -194,39 +196,41 @@
 </head>
 <body>
     <div id="container">
-        <p id="intro-text">Bienvenue dans le questionnaire. Cliquez sur "Commencer" pour démarrer.</p>
-        <button id="start-btn" onclick="startQuiz()">Commencer</button>
+        <div id="intro-text">
+            <p>Bienvenue au questionnaire. Cliquez sur "Commencer" pour démarrer.</p>
+            <button id="start-btn" onclick="startQuiz()">Commencer</button>
+        </div>
         <div id="questions">
             <div class="question active">
-                <p>Question 1: Quelle est la capitale de la France ?</p>
-                <input type="checkbox" id="paris" name="q1" value="Paris">
-                <label for="paris">Paris</label>
+                <h2>Question 1</h2>
+                <p>Quelle est la capitale de la France ?</p>
+                <input type="checkbox" id="q1-option1" value="Paris">
+                <label for="q1-option1">Paris</label>
+                <!-- Ajoutez d'autres options ici -->
+                <!-- <input type="checkbox" id="q1-option2" value="Option 2">
+                <label for="q1-option2">Option 2</label> -->
+                <button id="next-btn" onclick="nextQuestion()">Suivant</button>
             </div>
             <div class="question">
-                <p>Question 2: Quelle couleur est le ciel par défaut ?</p>
-                <input type="checkbox" id="bleu" name="q2" value="Bleu">
-                <label for="bleu">Bleu</label>
-                <input type="checkbox" id="ciel-bleu" name="q2" value="Ciel bleu">
-                <label for="ciel-bleu">Ciel bleu</label>
+                <h2>Question 2</h2>
+                <p>Quelle est la couleur du ciel par temps clair ?</p>
+                <input type="checkbox" id="q2-option1" value="Bleu">
+                <label for="q2-option1">Bleu</label>
+                <!-- Ajoutez d'autres options ici -->
+                <!-- <input type="checkbox" id="q2-option2" value="Option 2">
+                <label for="q2-option2">Option 2</label> -->
+                <button id="next-btn" onclick="nextQuestion()">Suivant</button>
             </div>
-            <!-- Ajoutez les autres questions ici -->
-            <!-- <div class="question">
-                <p>Question 3: Quelles sont les bonnes réponses ?</p>
-                <input type="checkbox" id="reponse1" name="q3" value="Bonne réponse 1">
-                <label for="reponse1">Bonne réponse 1</label>
-                <input type="checkbox" id="reponse2" name="q3" value="Bonne réponse 2">
-                <label for="reponse2">Bonne réponse 2</label>
-            </div> -->
+            <!-- Ajoutez d'autres questions ici -->
         </div>
-        <button id="next-btn" style="display: none;" onclick="nextQuestion()">Suivant</button>
-        <button id="submit-btn" style="display: none;" onclick="submitForm()">Soumettre</button>
+        <button id="submit-btn" onclick="submitForm()">Soumettre</button>
         <div id="result">
-            <h2>Résultats</h2>
+            <h2>Résultat du questionnaire</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Question</th>
-                        <th>Réponse(s) donnée(s)</th>
+                        <th>Réponse(s)</th>
                         <th>Statut</th>
                     </tr>
                 </thead>
