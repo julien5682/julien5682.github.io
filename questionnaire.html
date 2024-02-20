@@ -107,16 +107,16 @@
                 }
             });
             if (num === 0) {
-                document.getElementById('prev-btn').style.display = 'none';
+                document.querySelector('.prev-btn').style.display = 'none';
             } else {
-                document.getElementById('prev-btn').style.display = 'inline-block';
+                document.querySelector('.prev-btn').style.display = 'inline-block';
             }
             if (num === questions.length - 1) {
                 document.getElementById('submit-btn').style.display = 'inline-block';
-                document.getElementById('next-btn').style.display = 'none';
+                document.querySelector('.next-btn').style.display = 'none';
             } else {
                 document.getElementById('submit-btn').style.display = 'none';
-                document.getElementById('next-btn').style.display = 'inline-block';
+                document.querySelector('.next-btn').style.display = 'inline-block';
             }
         }
 
@@ -221,7 +221,7 @@
             <!-- Ajoutez d'autres questions ici -->
         </div>
         <button id="submit-btn" style="display: none;" onclick="submitForm()">Soumettre</button>
-        <button id="prev-btn" style="display: none;" onclick="prevQuestion()">Précédent</button>
+        <button class="prev-btn" style="display: none;" onclick="prevQuestion()">Précédent</button>
         <div id="result">
             <h2>Résultat du questionnaire</h2>
             <table>
