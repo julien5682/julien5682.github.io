@@ -23,7 +23,7 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        #start-btn, #submit-btn {
+        #start-btn, #submit-btn, #next-btn {
             margin: 0 auto;
             padding: 10px 20px;
             background-color: #007bff;
@@ -50,9 +50,6 @@
             display: block;
             font-weight: bold;
             margin-bottom: 10px;
-        }
-        .question input[type="checkbox"] {
-            margin-right: 10px;
         }
         #result {
             display: none;
@@ -91,11 +88,13 @@
         }
     </style>
     <script>
+        var currentQuestion = 0;
+
         function startQuiz() {
             document.getElementById('intro-text').style.display = 'none';
             document.getElementById('start-btn').style.display = 'none';
             document.getElementById('questions').style.display = 'block';
-            showQuestion(0);
+            showQuestion(currentQuestion);
         }
 
         function showQuestion(num) {
@@ -109,7 +108,14 @@
             });
             if (num === questions.length - 1) {
                 document.getElementById('submit-btn').style.display = 'block';
+            } else {
+                document.getElementById('next-btn').style.display = 'block';
             }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            showQuestion(currentQuestion);
         }
 
         function submitForm() {
@@ -172,7 +178,6 @@
                 // Ajoutez les autres bonnes réponses ici
                 // case 2:
                 //     return ['Bonne réponse 1', 'Bonne réponse 2'];
-                // ...
                 default:
                     return [];
             }
@@ -213,6 +218,7 @@
                 <label for="reponse2">Bonne réponse 2</label>
             </div> -->
         </div>
+        <button id="next-btn" style="display: none;" onclick="nextQuestion()">Suivant</button>
         <button id="submit-btn" style="display: none;" onclick="submitForm()">Soumettre</button>
         <div id="result">
             <h2>Résultats</h2>
