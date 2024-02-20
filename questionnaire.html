@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        #container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .question {
+            display: none;
+            margin-bottom: 20px;
+        }
+        .question.active {
+            display: block;
+        }
+        .question label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .question input[type="radio"] {
+            margin-right: 10px;
+        }
+        #submit-btn {
+            display: none;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #result {
+            display: none;
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        #result th, #result td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        #result th {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+    <script>
+        function showQuestion(num) {
+            var questions = document.querySelectorAll('.question');
+            questions.forEach(function(question, index) {
+                if (index === num) {
+                    question.classList.add('active');
+                } else {
+                    question.classList.remove('active');
+                }
+            });
+            if (num === questions.length - 1) {
+                document.getElementById('submit-btn').style.display = 'block';
+            }
+        }
+
+        function submitForm() {
+            var answers = [];
+            var questions = document.querySelectorAll('.question');
+            questions.forEach(function(question) {
+                var selectedOption = question.querySelector('input[type="radio"]:checked');
+                if (selectedOption) {
+                    answers.push(selectedOption.value);
+                }
+            });
+            var resultTable = document.getElementById('result');
+            var tbody = resultTable.querySelector('tbody');
+            answers.forEach(function(answer, index) {
+                var row = tbody.insertRow(index);
+                var numCell = row.insertCell(0);
+                var answerCell = row.insertCell(1);
+                numCell.textContent = 'Question ' + (index + 1);
+                answerCell.textContent = answer;
+            });
+            document.getElementById('quiz-form').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <h1>Questionnaire</h1>
+        <form id="quiz-form">
+            <div class="question active">
+                <label for="q1">Question 1: Quelle est la capitale de la France?</label>
+                <input type="radio" id="q1" name="question1" value="Paris">
+                <label for="q1">Paris</label>
+                <input type="radio" id="q2" name="question1" value="Londres">
+                <label for="q2">Londres</label>
+                <input type="radio" id="q3" name="question1" value="Berlin">
+                <label for="q3">Berlin</label>
+                <button type="button" onclick="showQuestion(1)">Suivant</button>
+            </div>
+            <div class="question">
+                <label for="q4">Question 2: Quelle est la couleur du ciel lorsqu'il fait beau?</label>
+                <input type="radio" id="q4" name="question2" value="Bleu">
+                <label for="q4">Bleu</label>
+                <input type="radio" id="q5" name="question2" value="Rouge">
+                <label for="q5">Rouge</label>
+                <input type="radio" id="q6" name="question2" value="Vert">
+                <label for="q6">Vert</label>
+                <button type="button" onclick="showQuestion(2)">Suivant</button>
+            </div>
+            <!-- Ajoutez les autres questions de la même manière -->
+            <!-- ... -->
+            <button type="button" id="submit-btn" onclick="submitForm()">Soumettre</button>
+        </form>
+        <table id="result">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Réponse</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les réponses seront insérées ici via JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
