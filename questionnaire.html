@@ -23,7 +23,7 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        #start-btn, #submit-btn, #next-btn {
+        #start-btn, #submit-btn, #next-btn, #prev-btn {
             margin: 0 auto;
             padding: 10px 20px;
             background-color: #007bff;
@@ -106,17 +106,27 @@
                     question.classList.remove('active');
                 }
             });
+            if (num === 0) {
+                document.getElementById('prev-btn').style.display = 'none';
+            } else {
+                document.getElementById('prev-btn').style.display = 'inline-block';
+            }
             if (num === questions.length - 1) {
                 document.getElementById('submit-btn').style.display = 'block';
                 document.getElementById('next-btn').style.display = 'none';
             } else {
                 document.getElementById('submit-btn').style.display = 'none';
-                document.getElementById('next-btn').style.display = 'block';
+                document.getElementById('next-btn').style.display = 'inline-block';
             }
         }
 
         function nextQuestion() {
             currentQuestion++;
+            showQuestion(currentQuestion);
+        }
+
+        function prevQuestion() {
+            currentQuestion--;
             showQuestion(currentQuestion);
         }
 
@@ -149,8 +159,8 @@
                 var statusCell = row.insertCell(2);
                 numCell.textContent = 'Question ' + (index + 1);
                 answerCell.textContent = answer.join(', ');
-                var correctAnswersForQuestion = getCorrectAnswers(index);
-                if (arraysEqual(answer, correctAnswersForQuestion)) {
+                var isCorrect = JSON.stringify(answer) === JSON.stringify(correctAnswersArray[index]);
+                if (isCorrect) {
                     statusCell.textContent = 'Correct';
                     statusCell.classList.add('correct');
                     correctAnswers++;
@@ -160,55 +170,27 @@
                 }
             });
             var score = (correctAnswers / totalQuestions) * 100;
-            var scoreRow = tbody.insertRow();
-            var scoreCell1 = scoreRow.insertCell(0);
-            var scoreCell2 = scoreRow.insertCell(1);
-            var scoreCell3 = scoreRow.insertCell(2);
-            scoreCell1.textContent = 'Score';
-            scoreCell2.textContent = correctAnswers + '/' + totalQuestions;
-            scoreCell3.textContent = score.toFixed(2) + '%';
-            document.getElementById('questions').style.display = 'none';
-            document.getElementById('result').style.display = 'block';
-        }
-
-        function getCorrectAnswers(questionNum) {
-            switch (questionNum) {
-                case 0:
-                    return ['Paris'];
-                case 1:
-                    return ['Bleu', 'Ciel bleu'];
-                // Ajoutez les autres bonnes réponses ici
-                // case 2:
-                //     return ['Bonne réponse 1', 'Bonne réponse 2'];
-                default:
-                    return [];
-            }
-        }
-
-        function arraysEqual(arr1, arr2) {
-            if (arr1.length !== arr2.length) return false;
-            for (var i = 0; i < arr1.length; i++) {
-                if (arr1[i] !== arr2[i]) return false;
-            }
-            return true;
+            alert('Score : ' + score + '%');
+            resultTable.style.display = 'block';
         }
     </script>
 </head>
 <body>
     <div id="container">
-        <div id="intro-text">
-            <p>Bienvenue au questionnaire. Cliquez sur "Commencer" pour démarrer.</p>
-            <button id="start-btn" onclick="startQuiz()">Commencer</button>
-        </div>
+        <h1>Questionnaire</h1>
+        <p id="intro-text">Répondez aux questions ci-dessous pour tester vos connaissances.</p>
+        <button id="start-btn" onclick="startQuiz()">Commencer le questionnaire</button>
         <div id="questions">
-            <div class="question active">
+            <div class="question">
                 <h2>Question 1</h2>
                 <p>Quelle est la capitale de la France ?</p>
+                <img src="paris.jpg" alt="Paris">
                 <input type="checkbox" id="q1-option1" value="Paris">
                 <label for="q1-option1">Paris</label>
-                <!-- Ajoutez d'autres options ici -->
-                <!-- <input type="checkbox" id="q1-option2" value="Option 2">
-                <label for="q1-option2">Option 2</label> -->
+                <input type="checkbox" id="q1-option2" value="Marseille">
+                <label for="q1-option2">Marseille</label>
+                <input type="checkbox" id="q1-option3" value="Lyon">
+                <label for="q1-option3">Lyon</label>
                 <button id="next-btn" onclick="nextQuestion()">Suivant</button>
             </div>
             <div class="question">
@@ -216,9 +198,24 @@
                 <p>Quelle est la couleur du ciel par temps clair ?</p>
                 <input type="checkbox" id="q2-option1" value="Bleu">
                 <label for="q2-option1">Bleu</label>
-                <!-- Ajoutez d'autres options ici -->
-                <!-- <input type="checkbox" id="q2-option2" value="Option 2">
-                <label for="q2-option2">Option 2</label> -->
+                <input type="checkbox" id="q2-option2" value="Vert">
+                <label for="q2-option2">Vert</label>
+                <input type="checkbox" id="q2-option3" value="Rouge">
+                <label for="q2-option3">Rouge</label>
+                <button id="prev-btn" onclick="prevQuestion()">Précédent</button>
+                <button id="next-btn" onclick="nextQuestion()">Suivant</button>
+            </div>
+            <div class="question">
+                <h2>Question 3</h2>
+                <p>Quel est le résultat de 2 + 2 ?</p>
+                <img src="math.jpg" alt="Math">
+                <input type="checkbox" id="q3-option1" value="3">
+                <label for="q3-option1">3</label>
+                <input type="checkbox" id="q3-option2" value="4">
+                <label for="q3-option2">4</label>
+                <input type="checkbox" id="q3-option3" value="5">
+                <label for="q3-option3">5</label>
+                <button id="prev-btn" onclick="prevQuestion()">Précédent</button>
                 <button id="next-btn" onclick="nextQuestion()">Suivant</button>
             </div>
             <!-- Ajoutez d'autres questions ici -->
