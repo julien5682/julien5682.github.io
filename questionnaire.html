@@ -31,7 +31,6 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            display: none;
         }
         #intro-text {
             text-align: center;
@@ -198,17 +197,23 @@
                 <input type="checkbox" id="paris" name="q1" value="Paris">
                 <label for="paris">Paris</label>
             </div>
-            <!-- Ajoutez les autres questions ici -->
             <div class="question">
-                <p>Question 2: Quelle est la couleur du ciel par beau temps ?</p>
+                <p>Question 2: Quelle couleur est le ciel par défaut ?</p>
                 <input type="checkbox" id="bleu" name="q2" value="Bleu">
                 <label for="bleu">Bleu</label>
                 <input type="checkbox" id="ciel-bleu" name="q2" value="Ciel bleu">
                 <label for="ciel-bleu">Ciel bleu</label>
             </div>
             <!-- Ajoutez les autres questions ici -->
+            <!-- <div class="question">
+                <p>Question 3: Quelles sont les bonnes réponses ?</p>
+                <input type="checkbox" id="reponse1" name="q3" value="Bonne réponse 1">
+                <label for="reponse1">Bonne réponse 1</label>
+                <input type="checkbox" id="reponse2" name="q3" value="Bonne réponse 2">
+                <label for="reponse2">Bonne réponse 2</label>
+            </div> -->
         </div>
-        <button id="submit-btn" onclick="submitForm()">Soumettre</button>
+        <button id="submit-btn" style="display: none;" onclick="submitForm()">Soumettre</button>
         <div id="result">
             <h2>Résultats</h2>
             <table>
