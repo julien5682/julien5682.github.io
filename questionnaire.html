@@ -187,6 +187,11 @@
             var score = (correctAnswers / totalQuestions) * 100;
             alert('Score : ' + score + '%');
             resultTable.style.display = 'block';
+            if (score < 100) {
+                alert('Désolé, Il faut avoir 100% de bonnes réponses.');
+            } else {
+                window.location.href = 'photos.html';
+            }
         }
     </script>
 </head>
