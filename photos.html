@@ -22,12 +22,8 @@
             align-items: center;
             height: 100vh;
         }
-        .rectangle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Adapter l'image au rectangle */
-        }
         .rectangle {
+            position: relative;
             width: 900px;
             height: 900px;
             margin: 10px;
@@ -59,22 +55,23 @@
         <div id="header">
             <h1>Petites Photos d'une autre époque!</h1>
             <p>J'ai fait une sorte de page dédiée aux photos où on est ensemble, alors j'ai pas pu tout mettre parce que j'ai pris que les photos que j'avais dans mon téléphone, disons que c'est un petit échantillon
-                + une photo ou apparamment je t'ai pris en otage.
+                + une photo ou apparemment je t'ai pris en otage.
             </p>
         </div>
         <div class="rectangle">
             <img src="IMG_20201216_195535.jpg" alt="Image 1">
-            <button class="download-btn" id="bouton 1" onclick="downloadImage('IMG_20201216_195535.jpg')">Télécharger</button>
+            <button class="download-btn" id="bouton1" onclick="downloadImage('IMG_20201216_195535.jpg')">Télécharger</button>
         </div>
         <div class="rectangle">
             <img src="IMG_20201216_195542.jpg" alt="Image 2">
-            <button class="download-btn" id="bouton 2" onclick="downloadImage('IMG_20201216_195542.jpg')">Télécharger</button>
+            <button class="download-btn" id="bouton2" onclick="downloadImage('IMG_20201216_195542.jpg')">Télécharger</button>
         </div>
         <div class="rectangle">
             <img src="IMG_20210128_174530.jpg" alt="Image 3">
             <button class="download-btn" onclick="downloadImage('IMG_20210128_174530.jpg')">Télécharger</button>
-            
         </div>
+            
+        
         <div class="rectangle">
             <img src="IMG_20210129_183430.jpg" alt="Image 4">
             
